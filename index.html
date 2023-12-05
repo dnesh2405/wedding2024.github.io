@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>DINESH WEDS THIVYHA</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Styles for the modal */
+			.modal {
+				display: none;
+				position: fixed;
+				z-index: 1000;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+				background-color: rgba(0,0,0,0.8);
+			}
+
+			.modal-content {
+				position: relative;
+				background-color: #fefefe;
+				margin: 15% auto;
+				padding: 20px;
+				border: 1px solid #888;
+				width: 80%;
+			}
+
+			.close {
+				position: absolute;
+				right: 0;
+				top: 0;
+				padding: 10px;
+				cursor: pointer;
+			}
+
+			/* Style for the image preview */
+			#imagePreview {
+				max-width: 100%;
+				max-height: 200px;
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<div id="header-wrapper">
+				<div id="header" class="container">
+					<!-- Hero -->
+					<section id="hero" class="container">
+						<header>
+							<h2>WELCOME TO MY WEDDING PHOTOBOOK</h2>
+						</header>
+						<p>DINESH  ❤️ THIVYHA</p>
+						<ul class="actions">
+							<li><a href="#" class="button" onclick="openModal()">UPLOAD YOUR PHOTO</a></li>
+						</ul>
+					</section>
+				</div>
+			</div>
+
+			<!-- Features 1 -->
+			<div class="wrapper">
+				<div class="container">
+					<div class="row" id="featureRow"></div>
+				</div>
+			</div>
+
+			<!-- Modal form -->
+			<div id="myModal" class="modal">
+				<div class="modal-content">
+					<span class="close" onclick="closeModal()">&times;</span>
+					<form id="uploadForm" onsubmit="handleFormSubmission(); return false;">
+						<input type="file" accept="image/*" required id="uploadImage" onchange="previewImage()">
+						<img id="imagePreview" src="#" alt="Image Preview" style="display: none;">
+						<input type="text" placeholder="Enter your name" required>
+						<textarea placeholder="Enter your comment or wishes" required></textarea>
+						<button type="submit">Submit</button>
+					</form>
+				</div>
+			</div>
+
+			<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<script>
+				function openModal() {
+					var modal = document.getElementById('myModal');
+					modal.style.display = 'block';
+				}
+
+				function closeModal() {
+					var modal = document.getElementById('myModal');
+					modal.style.display = 'none';
+				}
+
+				function previewImage() {
+					var input = document.getElementById('uploadImage');
+					var preview = document.getElementById('imagePreview');
+					var file = input.files[0];
+					var reader = new FileReader();
+
+					reader.onload = function(e) {
+						preview.src = e.target.result;
+						preview.style.display = 'block';
+					};
+
+					if (file) {
+						reader.readAsDataURL(file);
+					} else {
+						preview.style.display = null;
+					}
+				}
+
+				function addNewSection(imageUrl, name, comment) {
+					var featureRow = document.getElementById('featureRow');
+					var newSection = document.createElement('section');
+					newSection.className = 'col-6 col-12-narrower feature';
+
+					var imageWrapper = document.createElement('div');
+					imageWrapper.className = 'image-wrapper';
+
+					var imageLink = document.createElement('a');
+					imageLink.href = imageUrl;
+					imageLink.className = 'image';
+
+					var image = document.createElement('img');
+					image.src = imageUrl;
+					image.alt = '';
+
+					var h2 = document.createElement('h2');
+					h2.textContent = name || 'NEW NAME';
+
+					var p = document.createElement('p');
+					p.textContent = comment || 'NEW COMMENT OR WISHES.';
+
+					imageLink.appendChild(image);
+					imageWrapper.appendChild(imageLink);
+					imageWrapper.appendChild(h2);
+					imageWrapper.appendChild(p);
+
+					newSection.appendChild(imageWrapper);
+					featureRow.appendChild(newSection);
+					closeModal();
+				}
+
+				function handleFormSubmission() {
+					var uploadedImage = document.getElementById('uploadImage').files[0];
+
+					if (uploadedImage) {
+						var imageUrl = URL.createObjectURL(uploadedImage);
+						var name = document.querySelector('#uploadForm input[type=text]').value;
+						var comment = document.querySelector('#uploadForm textarea').value;
+						addNewSection(imageUrl, name, comment);
+					}
+				}
+			</script>
+<!-- ... (previous HTML code) ... -->
+
+<script>
+	function openModal() {
+	  var modal = document.getElementById('myModal');
+	  modal.style.display = 'block';
+	}
+  
+	function closeModal() {
+	  var modal = document.getElementById('myModal');
+	  modal.style.display = 'none';
+	}
+  
+	function previewImage() {
+	  var input = document.getElementById('uploadImage');
+	  var preview = document.getElementById('imagePreview');
+	  var file = input.files[0];
+	  var reader = new FileReader();
+  
+	  reader.onload = function(e) {
+		preview.src = e.target.result;
+		preview.style.display = 'block';
+	  };
+  
+	  if (file) {
+		reader.readAsDataURL(file);
+	  } else {
+		preview.style.display = null;
+	  }
+	}
+  
+	function addNewSection(imageUrl, name, comment) {
+	  var featureRow = document.getElementById('featureRow');
+	  var newSection = document.createElement('section');
+	  newSection.className = 'col-6 col-12-narrower feature';
+  
+	  var imageWrapper = document.createElement('div');
+	  imageWrapper.className = 'image-wrapper';
+  
+	  var imageLink = document.createElement('a');
+	  imageLink.href = imageUrl;
+	  imageLink.className = 'image';
+  
+	  var image = document.createElement('img');
+	  image.src = imageUrl;
+	  image.alt = '';
+  
+	  var h2 = document.createElement('h2');
+	  h2.textContent = name || 'NEW NAME';
+  
+	  var p = document.createElement('p');
+	  p.textContent = comment || 'NEW COMMENT OR WISHES.';
+  
+	  // Add delete button and event listener
+	  var deleteButton = document.createElement('button');
+	  deleteButton.textContent = 'Delete';
+	  deleteButton.onclick = function() {
+		var password = prompt('Enter the password for deletion:');
+		if (password === 'zeus24') {
+		  featureRow.removeChild(newSection);
+		} else {
+		  alert('Incorrect password. Deletion canceled.');
+		}
+	  };
+  
+	  imageLink.appendChild(image);
+	  imageWrapper.appendChild(imageLink);
+	  imageWrapper.appendChild(h2);
+	  imageWrapper.appendChild(p);
+	  imageWrapper.appendChild(deleteButton);
+  
+	  newSection.appendChild(imageWrapper);
+	  featureRow.appendChild(newSection);
+	  closeModal();
+	}
+  
+	function handleFormSubmission() {
+	  var uploadedImage = document.getElementById('uploadImage').files[0];
+  
+	  if (uploadedImage) {
+		var imageUrl = URL.createObjectURL(uploadedImage);
+		var name = document.querySelector('#uploadForm input[type=text]').value;
+		var comment = document.querySelector('#uploadForm textarea').value;
+		addNewSection(imageUrl, name, comment);
+	  }
+	}
+  </script>
+  <!-- ... (previous HTML code) ... -->
+
+<script>
+	// (Previous functions...)
+  
+	function clearFormFields() {
+	  document.getElementById('uploadForm').reset();
+	  document.getElementById('imagePreview').src = '#'; // Reset the image preview
+	}
+  
+	function addNewSection(imageUrl, name, comment) {
+	  var featureRow = document.getElementById('featureRow');
+	  var newSection = document.createElement('section');
+	  newSection.className = 'col-6 col-12-narrower feature';
+  
+	  var imageWrapper = document.createElement('div');
+	  imageWrapper.className = 'image-wrapper';
+  
+	  var imageLink = document.createElement('a');
+	  imageLink.href = imageUrl;
+	  imageLink.className = 'image';
+  
+	  var image = document.createElement('img');
+	  image.src = imageUrl;
+	  image.alt = '';
+  
+	  var h2 = document.createElement('h2');
+	  h2.textContent = name || 'NEW NAME';
+  
+	  var p = document.createElement('p');
+	  p.textContent = comment || 'NEW COMMENT OR WISHES.';
+  
+	  var deleteButton = document.createElement('button');
+	  deleteButton.textContent = 'Delete';
+	  deleteButton.onclick = function() {
+		var password = prompt('Enter the password for deletion:');
+		if (password === 'zeus24') {
+		  featureRow.removeChild(newSection);
+		} else {
+		  alert('Incorrect password. Deletion canceled.');
+		}
+	  };
+  
+	  imageLink.appendChild(image);
+	  imageWrapper.appendChild(imageLink);
+	  imageWrapper.appendChild(h2);
+	  imageWrapper.appendChild(p);
+	  imageWrapper.appendChild(deleteButton);
+  
+	  newSection.appendChild(imageWrapper);
+	  featureRow.appendChild(newSection);
+	  closeModal();
+	  clearFormFields();
+	}
+  
+	function handleFormSubmission() {
+	  var uploadedImage = document.getElementById('uploadImage').files[0];
+  
+	  if (uploadedImage) {
+		var imageUrl = URL.createObjectURL(uploadedImage);
+		var name = document.querySelector('#uploadForm input[type=text]').value;
+		var comment = document.querySelector('#uploadForm textarea').value;
+		addNewSection(imageUrl, name, comment);
+	  }
+	}
+  </script>
+  
+  <!-- ... (remaining HTML code) ... -->
+  
+		</div>
+	</body>
+</html>
